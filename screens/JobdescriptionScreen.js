@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Text,Pressable, ScrollView } from "react-native";
+import { View, StyleSheet, Text,Pressable, ScrollView } from "react-native";
 const JobdescriptionScreen = ({ navigation }) => {
     return (
         <View>
