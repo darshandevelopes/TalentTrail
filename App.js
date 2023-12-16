@@ -18,9 +18,11 @@ export default function App() {
           headerShown: false, // Hide header for all screens
         }}
       >
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Jobdescription" component={JobdescriptionScreen} />
         <Stack.Screen name="Portfolio" component={PortfolioScreen} />
+        <Stack.Screen name="Jobdescription" component={JobdescriptionScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        
+        
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         
