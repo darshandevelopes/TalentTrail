@@ -1,6 +1,10 @@
 import React from "react";
+import JobdescriptionScreen from "./screens/JobdescriptionScreen";
+import PortfolioScreen from "./screens/PortfolioScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -14,8 +18,13 @@ export default function App() {
           headerShown: false, // Hide header for all screens
         }}
       >
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Jobdescription" component={JobdescriptionScreen} />
+        <Stack.Screen name="Portfolio" component={PortfolioScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
