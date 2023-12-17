@@ -1,5 +1,5 @@
 import React from "react";
-import JobdescriptionScreen from "./screens/JobdescriptionScreen";
+import JobDescriptionScreen from "./screens/JobdescriptionScreen";
 import PortfolioScreen from "./screens/PortfolioScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -19,14 +19,10 @@ export default function App() {
         }}
       >
         <Stack.Screen name="Portfolio" component={PortfolioScreen} />
-        <Stack.Screen name="Jobdescription" component={JobdescriptionScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        
-        
+        <Stack.Screen name="JobDescription" component={JobDescriptionScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        
-        
       </Stack.Navigator>
     </NavigationContainer>
   );

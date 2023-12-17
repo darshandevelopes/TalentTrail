@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Pressable, TextInput, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Pressable, TextInput, Text, TouchableOpacity} from "react-native";
 
 const SignUpScreen = ({ navigation }) => {
   const [name, onChangeName] = useState('');
@@ -87,6 +87,7 @@ const SignUpScreen = ({ navigation }) => {
         placeholder="Enter password"
         style={styles.container}
         keyboardType="numeric"
+        secureTextEntry={true}
         value={pass}
         onChangeText={(pass) => onChangePass(pass)}
       />
@@ -94,10 +95,12 @@ const SignUpScreen = ({ navigation }) => {
         placeholder="confirm password"
         style={styles.container}
         keyboardType="numeric"
+        secureTextEntry={true}
         value={conPass}
         onChangeText={(conPass) => onChangeConPass(conPass)}
       />
 
+      {/* Sign up */}
       <TouchableOpacity
         style={[styles.singInButton, { backgroundColor: "#244A61" }, { opacity: isFormValid ? 1 : 0.5 }]}
         disabled={!isFormValid}
@@ -106,6 +109,7 @@ const SignUpScreen = ({ navigation }) => {
         <Text style={[styles.buttonText, { color: "white" }]}>{"Sign Up ->"}</Text>
       </TouchableOpacity>
 
+      {/* sign in */}
       <View style={{ flexDirection: "row", marginLeft: 90 }}>
         <Text style={{ color: "black", fontSize: 15, fontWeight: "800" }} >Already Have Account? </Text>
         <Pressable

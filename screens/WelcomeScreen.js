@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, Button, Pressable } from "react-native";
+import { View, Text, StyleSheet, Button, Pressable } from "react-native";
 import LottieView from "lottie-react-native";
 
 const WelcomeScreen = ({ navigation }) => {
