@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, Button, Pressable } from "react-native";
+import { View, Text, StyleSheet, Button, Pressable } from "react-native";
 import LottieView from "lottie-react-native";
 
 const WelcomeScreen = ({ navigation }) => {
@@ -34,7 +34,8 @@ const WelcomeScreen = ({ navigation }) => {
         {/* Text below Sign In buttons */}
         <View style={{ flexDirection: "row", alignSelf: "center" }}>
           <Text style={[{ color: "black" }]}>{"Don't have an account? "}</Text>
-          <Pressable>
+          <Pressable
+            onPress={() => navigation.navigate("SignUp")}>
             <Text style={{ fontWeight: "bold", color: "#244A61" }}>
               {"Sign up"}
             </Text>
