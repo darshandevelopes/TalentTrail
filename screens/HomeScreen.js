@@ -6,86 +6,103 @@ import {
   TextInput,
   SafeAreaView,
   ScrollView,
+  Pressable,
+  Image,
 } from "react-native";
+import { FooterBar } from "../components/FooterBar";
+import { SliderBox } from "react-native-image-slider-box";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const HomeScreen = ({ navigation }) => {
+  const images = [
+    require("../assets/slider1.jpeg"),
+    require("../assets/slider2.jpeg"),
+    require("../assets/slider3.jpeg"),
+    require("../assets/slider4.jpeg"),
+  ];
   return (
-    <SafeAreaView>
-      <View style={styles.ellipse}></View>
-      <View style={styles.search}>
-        <TextInput placeholder="Search Something"></TextInput>
-        <FontAwesomeIcon name="search" size={30} color="black" style={{}} />
+    <SafeAreaView style={{ height: "100%" }}>
+      <View style={styles.header}>
+        {/* Background Ellipse Shape */}
+        <View style={styles.ellipse}></View>
+
+        {/* Search Feature */}
+        <View style={styles.search}>
+          <TextInput placeholder="Search Something"></TextInput>
+          <FontAwesomeIcon name="search" size={30} color="black" style={{}} />
+        </View>
+
+        {/* Slider Feature */}
+        <View style={styles.slider}>
+          <SliderBox
+            images={images}
+            dotColor="black"
+            inactiveDotColor="#D9D9D9" autoplay={true} autoplayInterval={3000} circleLoop ={true}
+            style={{}}
+          />
+        </View>
       </View>
-      <ScrollView horizontal={true} style={styles.slider}>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Scroll</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>ON</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Me</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>to</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Get</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>slider</Text>
-        </View>
-        <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>View</Text>
+
+      {/* Cards Shape */}
+      <ScrollView style={[{}]}>
+        <View style={[styles.container]}>
+          <View style={[styles.row]}>
+            <Pressable style={styles.card}>
+              <Image
+                source={require("../assets/images1.jpeg")}
+                style={{ height: 90, width: 100 }}
+              />
+              <Text style={styles.cardText}>User Analytics </Text>
+            </Pressable>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("JobPosts")}
+            >
+              <Image
+                source={require("../assets/image2.png")}
+                style={{ height: 90, width: 100 }}
+              />
+              <Text style={styles.cardText}>Apply for Jobs</Text>
+            </Pressable>
+          </View>
+          <View style={styles.row}>
+            <Pressable style={styles.card}>
+              <Image
+                source={require("../assets/image3.png")}
+                style={{ height: 90, width: 100 }}
+              />
+              <Text style={styles.cardText}>Practice</Text>
+            </Pressable>
+            <Pressable style={styles.card}>
+              <Image
+                source={require("../assets/image4.png")}
+                style={{ height: 90, width: 100 }}
+              />
+              <Text style={styles.cardText}>Test</Text>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
-      <View style={styles.container}>
-      <View style={[{top:-90},styles.row]}>
-        <View style={styles.card}>
-          <Text>Card 6
-          </Text>
-        </View>
-        <View style={styles.card}>
-          <Text>Card 2</Text>
-        </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.card}>
-          <Text>Card 3</Text>
-        </View>
-        <View style={styles.card}>
-          <Text>Card 4</Text>
-        </View>
-      </View>
-     </View>
-
-  
-      
-
-     
+      <FooterBar navigation={navigation} />
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
+  header: {
+    height: "42%",
   },
-  slider: {
-    height: 200,
-    width: "85%",
-    backgroundColor: "white",
-    marginHorizontal: 30,
-    elevation: 10,
-    shadowColor: "black",
-    shadowOpacity: 0.3,
-    top: -100,
+  ellipse: {
+    height: 150,
+    width: "100%",
+    backgroundColor: "#244A61",
+    borderBottomLeftRadius: 55,
+    borderBottomRightRadius: 55,
   },
+  
   search: {
     padding: 10,
     flexDirection: "row",
-    width: "70%",
+    width: "85%",
     backgroundColor: "#D9D9D9",
     borderRadius: 10,
     justifyContent: "space-between",
@@ -93,6 +110,18 @@ const styles = StyleSheet.create({
     top: -110,
     marginLeft: 35,
   },
+  slider: {
+    height: 200,
+    backgroundColor: "yellow",
+    width: "85%",
+    backgroundColor: "white",
+    marginHorizontal: 30,
+    elevation: 10,
+    shadowColor: "black",
+    shadowOpacity: 0.3,
+    top: -90,
+  },
+  
   Slidercard: {
     flex: 0,
     alignItems: "center",
@@ -106,27 +135,35 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  ellipse: {
-    height: 150,
-    width: "100%",
-    backgroundColor: "#244A61",
-    borderBottomLeftRadius: 55,
-    borderBottomRightRadius: 55,
+  container: {
+    flex: 1,
+    padding: 12,
   },
-  row:{
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 50,
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
   card: {
     flex: 1,
-    height: 100,
-    width:50,
-    backgroundColor: 'lightblue',
+    height: 150,
+    width: 80,
+    backgroundColor: "white",
     borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin:20
+    padding: 10,
+    position: "relative",
+    alignItems: "center",
+    margin: 20,
+    elevation: 3,
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowColor: "black",
+    shadowOpacity: 0.4,
+  },
+  cardText: {
+    fontSize: 17,
+    marginTop: 10,
   },
 });
 export default HomeScreen;
