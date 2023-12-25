@@ -6,22 +6,28 @@ export const sharedStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
-  titleBold: {
+  TextExtraSmall: {
+    fontSize: 12,
+  },
+  TextRegular: {
+    fontSize: 14,
+  },
+  TextSubheading: {
+    fontSize: 17,
+  },
+  TextHeading: {
     fontSize: 20,
     fontWeight: "bold",
   },
-
-  primaryBold: {
-    fontSize: 16,
+  TextSubtitle: {
+    fontSize: 24,
+  },
+  TextTitle: {
+    fontSize: 28,
     fontWeight: "bold",
   },
-
-  secondaryBold: {
-    fontSize: 14,
+  TextLargeTitle: {
+    fontSize: 34,
     fontWeight: "bold",
-  },
-  secondaryNormal: {
-    fontSize: 14,
   },
 });
