@@ -8,7 +8,6 @@ import JobDescriptionScreen from "./screens/JobDescriptionScreen";
 import PortfolioScreen from "./screens/PortfolioScreen";
 import JobPostsScreen from "./screens/JobPostsScreen";
 import ScoreScreen from "./screens/ScoreScreen";
-import ExamScreen from "./screens/ExamScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
