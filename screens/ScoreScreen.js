@@ -2,21 +2,22 @@ import React from "react";
 import { View, StyleSheet, StatusBar, Pressable, Text, ScrollView } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { sharedStyles } from "../styles";
 const ScoreScreen = ({ navigation }) => {
     return (
         <View>
             <View style={styles.mainReactangle}>
                 <Pressable
                     onPress={() => navigation.navigate("TestFront")}
-                    style={{ marginLeft: "3%", marginTop: "3%" }}
+                    style={{ left:20, marginTop: "3%" }}
                 >
                 <AntDesign name="leftcircleo" size={20} color="white" />
                 </Pressable>
-                <AntDesign name="checkcircleo" size={28} color="white" style={{ alignSelf: 'center', marginLeft: "20%", marginTop: "10%" }} />
+                <AntDesign name="checkcircleo" size={28} color="white" style={{  left:80, marginTop:"15%"}} />
                 <Text style={styles.text}>Your Score</Text>
                 <Pressable
                     onPress={() => navigation.navigate("Home")}
-                    style={{ marginLeft: "13%", marginTop: "3%" }}
+                    style={{ left:130, marginTop: "3%" }}
                 >
                     <MaterialIcons name="house" size={24} color="white"  />
                 </Pressable>
@@ -60,26 +61,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     text: {
-        fontSize: 30,
-        fontWeight: 'bold',
+        ...sharedStyles.TextLargeTitle,
         color: 'white',
         alignSelf: 'center',
-        marginLeft: "5%",
+        left:90,
         marginTop: "10%"
     },
     textOne: {
-        fontSize: 20,
+        ...sharedStyles.TextHeading,
         fontWeight: 'bold',
         marginTop: "5%",
         marginLeft: "5%"
     },
     textTwo: {
-        fontSize: 20,
+        ...sharedStyles.TextSubheading,
         marginTop: "5%",
         marginLeft: "5%"
     },
     textThree: {
-        fontSize: 20,
+        ...sharedStyles.TextSubheading,
         marginLeft: "5%"
     },
     subReactangle: {
