@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { sharedStyles } from "../styles";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -19,51 +20,45 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <ScrollView horizontal={true} style={styles.slider}>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Scroll</Text>
+          <Text style={sharedStyles.TextHeading}>Scroll</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>ON</Text>
+          <Text style={sharedStyles.TextHeading}>ON</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Me</Text>
+          <Text style={sharedStyles.TextHeading}>Me</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>to</Text>
+          <Text style={sharedStyles.TextHeading}>to</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>Get</Text>
+          <Text style={sharedStyles.TextHeading}>Get</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>slider</Text>
+          <Text style={sharedStyles.TextHeading}>slider</Text>
         </View>
         <View style={[styles.Slidercard]}>
-          <Text style={styles.sliderContent}>View</Text>
+          <Text style={sharedStyles.TextHeading}>View</Text>
         </View>
       </ScrollView>
       <View style={styles.container}>
-      <View style={[{top:-90},styles.row]}>
-        <View style={styles.card}>
-          <Text>Card 6
-          </Text>
+        <View style={[{ top: -90 }, styles.row]}>
+          <View style={styles.card}>
+            <Text>Card 6</Text>
+          </View>
+          <View style={styles.card}>
+            <Text>Card 2</Text>
+          </View>
         </View>
-        <View style={styles.card}>
-          <Text>Card 2</Text>
+        <View style={styles.row}>
+          <View style={styles.card}>
+            <Text>Card 3</Text>
+          </View>
+          <View style={styles.card}>
+            <Text>Card 4</Text>
+          </View>
         </View>
       </View>
-      <View style={styles.row}>
-        <View style={styles.card}>
-          <Text>Card 3</Text>
-        </View>
-        <View style={styles.card}>
-          <Text>Card 4</Text>
-        </View>
-      </View>
-     </View>
-
-  
-      
-
-     
     </SafeAreaView>
   );
 };
@@ -83,6 +78,7 @@ const styles = StyleSheet.create({
     top: -100,
   },
   search: {
+    ...sharedStyles.TextRegular,
     padding: 10,
     flexDirection: "row",
     width: "70%",
@@ -102,10 +98,6 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "yellow",
   },
-  sliderContent: {
-    fontWeight: "bold",
-    fontSize: 20,
-  },
   ellipse: {
     height: 150,
     width: "100%",
@@ -113,20 +105,21 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 55,
     borderBottomRightRadius: 55,
   },
-  row:{
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-around",
     marginBottom: 50,
   },
   card: {
+    ...sharedStyles.TextRegular,
     flex: 1,
     height: 100,
-    width:50,
-    backgroundColor: 'lightblue',
+    width: 50,
+    backgroundColor: "lightblue",
     borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin:20
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20,
   },
 });
 export default HomeScreen;

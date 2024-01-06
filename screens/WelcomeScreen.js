@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, Pressable } from "react-native";
 import LottieView from "lottie-react-native";
+import { sharedStyles } from "../styles";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
@@ -19,7 +20,7 @@ const WelcomeScreen = ({ navigation }) => {
           style={[styles.singInButton, { backgroundColor: "#244A61" }]}
         >
           <Text style={[styles.buttonText, { color: "white" }]}>
-            {"Sign In with Google"}
+            {"SIGN IN WITH GOOGLE"}
           </Text>
         </Pressable>
         <Pressable
@@ -27,16 +28,22 @@ const WelcomeScreen = ({ navigation }) => {
           style={[styles.singInButton, { backgroundColor: "#D9D9D9" }]}
         >
           <Text style={[styles.buttonText, { color: "#244A61" }]}>
-            {"Sign In with email"}
+            {"SIGN IN WITH EMAIL"}
           </Text>
         </Pressable>
 
         {/* Text below Sign In buttons */}
         <View style={{ flexDirection: "row", alignSelf: "center" }}>
-          <Text style={[{ color: "black" }]}>{"Don't have an account? "}</Text>
-          <Pressable
-            onPress={() => navigation.navigate("SignUp")}>
-            <Text style={{ fontWeight: "bold", color: "#244A61" }}>
+          <Text style={[sharedStyles.TextRegular, { color: "black" }]}>
+            {"Don't have an account? "}
+          </Text>
+          <Pressable onPress={() => navigation.navigate("SignUp")}>
+            <Text
+              style={[
+                sharedStyles.TextRegular,
+                { fontWeight: "bold", color: "#244A61" },
+              ]}
+            >
               {"Sign up"}
             </Text>
           </Pressable>
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontSize: 16,
+    ...sharedStyles.TextRegular,
     fontWeight: "bold",
   },
 });
