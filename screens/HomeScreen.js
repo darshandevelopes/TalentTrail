@@ -12,6 +12,7 @@ import {
 import { FooterBar } from "../components/FooterBar";
 import { SliderBox } from "react-native-image-slider-box";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { sharedStyles } from "../styles";
 
 const HomeScreen = ({ navigation }) => {
   const images = [
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
   },
   
   search: {
+    ...sharedStyles.TextRegular,
     padding: 10,
     flexDirection: "row",
     width: "85%",
@@ -144,6 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   card: {
+    ...sharedStyles.TextRegular,
     flex: 1,
     height: 150,
     width: 80,

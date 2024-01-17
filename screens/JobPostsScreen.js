@@ -34,7 +34,7 @@ const JobPostsScreen = ({ navigation }) => {
       const jobsData = [
         {
           id: "1",
-          title: "Job 1",
+          title: "Software Developer",
           company: "Google Inc.",
           experience: "0-1 yrs",
           package: "3.4 - 4 LPA",
@@ -118,20 +118,25 @@ const JobPostsScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("Home")}
         />
 
-        <Text style={[{ color: "white", marginLeft: 10 }, styles.bold14]}>
+        <Text
+          style={[
+            { color: "white", marginLeft: 10 },
+            sharedStyles.TextSubheading,
+          ]}
+        >
           {"User_Name"}
         </Text>
       </View>
 
       {/* Main Content In Middle Area */}
       <View style={[styles.mainContentContainer]}>
-        <Text style={sharedStyles.titleBold}>{"Find a job"}</Text>
+        <Text style={sharedStyles.TextTitle}>{"Find a job"}</Text>
 
         {/* Search Bar */}
         <View style={styles.searchBar}>
           <OcticonIcon name="search" color="black" size={25} />
           <TextInput
-            style={{ width: "75%" }}
+            style={[sharedStyles.TextRegular, { width: "75%" }]}
             placeholder="Search jobs"
             onChangeText={handleTextChange}
             value={text}
@@ -185,7 +190,7 @@ const JobCard = ({ item, cardStyle }) => {
   return (
     <View style={[styles.card, cardStyle]}>
       <View style={styles.rowSpaceBetween}>
-        <Text style={sharedStyles.primaryBold}>{item.title}</Text>
+        <Text style={sharedStyles.TextHeading}>{item.title}</Text>
 
         <Image
           style={{ width: 30, height: 30 }}
@@ -195,18 +200,18 @@ const JobCard = ({ item, cardStyle }) => {
         />
       </View>
 
-      <Text style={sharedStyles.secondaryNormal}>{item.company}</Text>
+      <Text style={sharedStyles.TextSubheading}>{item.company}</Text>
 
       <View style={styles.rowSpaceBetween}>
-        <Text style={[sharedStyles.secondaryNormal, styles.tag]}>
+        <Text style={[sharedStyles.TextRegular, styles.tag]}>
           {"Experience " + item.experience}
         </Text>
 
-        <Text style={[sharedStyles.secondaryNormal, styles.tag]}>
+        <Text style={[sharedStyles.TextRegular, styles.tag]}>
           {item.package}
         </Text>
 
-        <Text style={[sharedStyles.secondaryNormal, styles.tag]}>
+        <Text style={[sharedStyles.TextRegular, styles.tag]}>
           {item.jobType}
         </Text>
       </View>
@@ -219,19 +224,19 @@ const JobCard = ({ item, cardStyle }) => {
       >
         <OcticonIcon name="clock" size={20} color="black" />
 
-        <Text style={[sharedStyles.secondaryNormal, { marginLeft: 10 }]}>
+        <Text style={[sharedStyles.TextRegular, { marginLeft: 10 }]}>
           {"Be in the first"}
         </Text>
 
-        <Text style={[sharedStyles.secondaryBold, { marginLeft: 5 }]}>
+        <Text style={[sharedStyles.TextRegular, { marginLeft: 5 }]}>
           {item.totalApplicants + 5 + " applicants"}
         </Text>
       </View>
 
       <View style={[{ marginTop: 20 }, styles.rowSpaceBetween]}>
-        <Text style={sharedStyles.secondaryNormal}>{item.location}</Text>
+        <Text style={sharedStyles.TextRegular}>{item.location}</Text>
 
-        <Text style={sharedStyles.secondaryNormal}>
+        <Text style={sharedStyles.TextRegular}>
           {item.postingTimestamp + " Hours Ago"}
         </Text>
       </View>
@@ -279,7 +284,7 @@ const FilterPopup = ({ isVisible, onClose, onApply }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text>Job Role</Text>
+          <Text style={sharedStyles.TextRegular}>Job Role</Text>
           <TextInput
             placeholder="e.g React Native Developer"
             value={jobRoleFilter}
@@ -287,7 +292,7 @@ const FilterPopup = ({ isVisible, onClose, onApply }) => {
             style={styles.filterInput}
           />
 
-          <Text>Location</Text>
+          <Text style={sharedStyles.TextRegular}>Location</Text>
           <TextInput
             placeholder="e.g Mumbai"
             value={locationFilter}
@@ -295,7 +300,7 @@ const FilterPopup = ({ isVisible, onClose, onApply }) => {
             style={styles.filterInput}
           />
 
-          <Text>Annual Salary (LPA)</Text>
+          <Text style={sharedStyles.TextRegular}>Annual Salary (LPA)</Text>
           <TextInput
             keyboardType="numeric"
             placeholder="Annual salary expectation"
@@ -304,7 +309,7 @@ const FilterPopup = ({ isVisible, onClose, onApply }) => {
             style={styles.filterInput}
           />
 
-          <Text>Years of Experience</Text>
+          <Text style={sharedStyles.TextRegular}>Years of Experience</Text>
           <TextInput
             keyboardType="numeric"
             placeholder="Required years of experience"
@@ -317,16 +322,20 @@ const FilterPopup = ({ isVisible, onClose, onApply }) => {
             onPress={() => setRemoteJobFilter(!remoteJobFilter)}
             title="Remote"
             isChecked={remoteJobFilter}
+            style={sharedStyles.TextRegular}
           />
           <CheckBox
             onPress={() => setOnSiteJobFilter(!onSiteJobFilter)}
             title="On-site"
             isChecked={onSiteJobFilter}
+            style={sharedStyles.TextRegular}
           />
 
           <View style={[styles.rowSpaceBetween, { marginTop: 10 }]}>
             <TouchableOpacity onPress={onClose} style={{ padding: 10 }}>
-              <Text style={{ color: "red" }}>Cancel</Text>
+              <Text style={[sharedStyles.TextRegular, { color: "red" }]}>
+                Cancel
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -360,7 +369,7 @@ const CheckBox = (props) => {
       style={[{ color: "#000", marginLeft: 5 }, styles.checkBoxComponent]}
     >
       <MaterialCommunityIcons name={iconName} size={24} color="#000" />
-      <Text style={[styles.checkBoxTitle, sharedStyles.secondaryNormal]}>
+      <Text style={[styles.checkBoxTitle, sharedStyles.TextRegular]}>
         {props.title}
       </Text>
     </Pressable>
@@ -442,10 +451,12 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   modalButton: {
+    ...sharedStyles.TextRegular,
     color: "blue",
   },
 
   filterInput: {
+    ...sharedStyles.TextRegular,
     borderWidth: 1,
     paddingVertical: 1,
     paddingLeft: 10,
