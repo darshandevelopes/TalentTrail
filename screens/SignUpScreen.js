@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { sharedStyles } from "../styles";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const SignUpScreen = ({ navigation }) => {
   const [name, onChangeName] = useState("");
@@ -65,14 +66,20 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View>
+    <View style={styles.background}>
       <View>
         <View>
-          <Pressable onPress={() => navigation.navigate("Login")}>
-            <Text style={styles.arrow}>{"<-Home"}</Text>
-          </Pressable>
+          <MaterialCommunityIcons
+            name="arrow-left"
+            size={25}
+            color="black"
+            onPress={() => navigation.navigate("Login")}
+            style={styles.header}
+          />
         </View>
-        <Text style={[sharedStyles.TextTitle, { marginLeft: 10 }]}>
+        <Text
+          style={[sharedStyles.TextTitle, { marginLeft: 10, marginTop: 30 }]}
+        >
           Create Account
         </Text>
       </View>
@@ -139,13 +146,19 @@ const SignUpScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  background: {
+    position: "absolute",
+    backgroundColor: "#fff",
+    height: "100%",
+    width: "100%",
+  },
   container: {
     ...sharedStyles.TextRegular,
     height: 50,
     margin: 10,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: "grey",
+    backgroundColor: "#F2F0F1",
     textAlign: "left",
     marginTop: 30,
   },
@@ -162,11 +175,10 @@ const styles = StyleSheet.create({
     ...sharedStyles.TextRegular,
     fontWeight: "bold",
   },
-  arrow: {
-    ...sharedStyles.TextHeading,
-    color: "black",
-    marginTop: 70,
-    margin: 10,
+  header: {
+    height: "6.5%",
+    minHeight: 50,
+    padding: 10,
   },
   clickableText: {
     ...sharedStyles.TextRegular,

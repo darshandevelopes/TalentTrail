@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {
@@ -11,8 +11,40 @@ import {
   TextInput,
 } from "react-native";
 import { sharedStyles } from "../styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("https://apigroup.me/api/login/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+      const json = await response.json();
+      if (json.token) {
+        await AsyncStorage.setItem("userToken", json.token);
+        await AsyncStorage.setItem("userId", json.user.id.toString());
+        await AsyncStorage.setItem("username", json.user.username);
+        navigation.navigate("Home");
+      } else {
+        // Handle login failure
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>
@@ -28,7 +60,12 @@ const LoginScreen = ({ navigation }) => {
             Email
           </Text>
         </View>
-        <TextInput placeholder="Abchd@email.com" style={styles.inputStyle} />
+        <TextInput
+          placeholder="Enter your email"
+          style={styles.inputStyle}
+          onChangeText={setEmail}
+          value={email}
+        />
         <View style={styles.line}></View>
 
         {/* Input Style for Password */}
@@ -43,6 +80,8 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Enter your password"
           secureTextEntry={true}
           style={styles.inputStyle}
+          onChangeText={setPassword}
+          value={password}
         />
 
         <View style={styles.line}></View>
@@ -58,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
         {/* Login Buttons */}
         <View style={styles.buttonsContainer}>
           <Pressable
-            onPress={() => navigation.navigate("Home")}
+            onPress={handleLogin}
             style={[styles.singInButton, { backgroundColor: "#244A61" }]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>LOGIN</Text>
