@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button, Pressable } from "react-native";
 import LottieView from "lottie-react-native";
 import { sharedStyles } from "../styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const WelcomeScreen = ({ navigation }) => {
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem("userToken");
+      if (token) {
+        navigation.navigate("Home");
+      }
+    };
+    checkToken();
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* Bouncing Animation */}
