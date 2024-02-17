@@ -35,12 +35,12 @@ const HomeScreen = ({ navigation }) => {
 
         {/* Slider Feature */}
         <View style={styles.slider}>
-          <SliderBox
+          {/* <SliderBox
             images={images}
             dotColor="black"
             inactiveDotColor="#D9D9D9" autoplay={true} autoplayInterval={3000} circleLoop ={true}
             style={{}}
-          />
+          /> */}
         </View>
       </View>
 
@@ -67,7 +67,8 @@ const HomeScreen = ({ navigation }) => {
             </Pressable>
           </View>
           <View style={styles.row}>
-            <Pressable style={styles.card}>
+            <Pressable style={styles.card}
+            onPress={() => navigation.navigate("PracticeScreen")}>
               <Image
                 source={require("../assets/image3.png")}
                 style={{ height: 90, width: 100 }}

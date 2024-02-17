@@ -8,6 +8,9 @@ import JobDescriptionScreen from "./screens/JobDescriptionScreen";
 import PortfolioScreen from "./screens/PortfolioScreen";
 import JobPostsScreen from "./screens/JobPostsScreen";
 import ScoreScreen from "./screens/ScoreScreen";
+import PracticeScreen from "./screens/PracticeScreen"
+import DSAScreen from "./screens/DSAScreen"
+import AptiScreen from "./screens/AptiScreen"
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -31,6 +34,9 @@ export default function App() {
         <Stack.Screen name="Portfolio" component={PortfolioScreen} />
         <Stack.Screen name="JobDescription" component={JobDescriptionScreen} />
         <Stack.Screen name="Score" component={ScoreScreen}/>
+        <Stack.Screen name="PracticeScreen" component={PracticeScreen}/>
+        <Stack.Screen name="DSAScreen" component={DSAScreen}/>
+        <Stack.Screen name="AptiScreen" component={AptiScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
