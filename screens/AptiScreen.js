@@ -47,7 +47,7 @@ const AptiScreen= ({ navigation }) => {
               onPress={() => navigation.navigate("Home")}
             />
           </View>
-          <View style={styles.tabs}>
+          <View style={styles.tabs}>.
               <Text style={styles.tabText}>Aptitude and Reasoning </Text>
               <MaterialCommunityIcons
               name="arrow-right"
