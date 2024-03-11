@@ -75,7 +75,7 @@ const HomeScreen = ({ navigation }) => {
               />
               <Text style={styles.cardText}>Practice</Text>
             </Pressable>
-            <Pressable style={styles.card}>
+            <Pressable style={styles.card} onPress={() => navigation.navigate("TestHome")}>
               <Image
                 source={require("../assets/image4.png")}
                 style={{ height: 90, width: 100 }}
