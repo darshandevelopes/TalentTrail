@@ -31,73 +31,22 @@ const JobPostsScreen = ({ navigation }) => {
   useEffect(() => {
     async function fetchJobs() {
       // Dummy data, will be replaced by API call.
-      const jobsData = [
-        {
-          id: "1",
-          title: "Software Developer",
-          company: "Google Inc.",
-          experience: "0-1 yrs",
-          package: "3.4 - 4 LPA",
-          jobType: "In office",
-          totalApplicants: 26,
-          location: "Mumbai",
-          postingTimestamp: 10,
-          logo: "https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-48.png",
-        },
-        {
-          id: "2",
-          title: "Job 2",
-          company: "Microsoft Inc.",
-          experience: "0-1 yrs",
-          package: "3.4 - 4 LPA",
-          jobType: "In office",
-          totalApplicants: 26,
-          location: "Mumbai",
-          postingTimestamp: 10,
-          logo: "https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/78-microsoft-48.png",
-        },
-        {
-          id: "3",
-          title: "Job 3",
-          company: "Netflix Inc.",
-          experience: "0-1 yrs",
-          package: "3.4 - 4 LPA",
-          jobType: "In office",
-          totalApplicants: 26,
-          location: "Mumbai",
-          postingTimestamp: 10,
-          logo: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-48.png",
-        },
-        {
-          id: "4",
-          title: "Job 4",
-          company: "IBM Pvt. Ltd.",
-          experience: "0-1 yrs",
-          package: "3.4 - 4 LPA",
-          jobType: "In office",
-          totalApplicants: 26,
-          location: "Mumbai",
-          postingTimestamp: 6,
-          logo: "https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/ibm-48.png",
-        },
-        {
-          id: "5",
-          title: "Job 5",
-          company: "Zapier Inc.",
-          experience: "0-1 yrs",
-          package: "3.4 - 4 LPA",
-          jobType: "Remote",
-          totalApplicants: 26,
-          location: "Anywhere",
-          postingTimestamp: 7,
-          logo: "https://cdn.iconscout.com/icon/free/png-48/free-zapier-282557.png",
-        },
-      ];
 
-      if (Object.keys(filters).length === 0) {
-        setJobs(jobsData);
-      } else {
-        setJobs([]);
+      try {
+        const response = await fetch("http://darshan-rahate.me/api/jobs/", {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const jobsData = await response.json();
+        if (Object.keys(filters).length === 0) {
+          setJobs(jobsData);
+        } else {
+          setJobs([]);
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
 
@@ -168,7 +117,13 @@ const JobPostsScreen = ({ navigation }) => {
           renderItem={({ item, index }) => {
             const currentStyle =
               index % 2 === 0 ? styles.cardEven : styles.cardOdd;
-            return <JobCard item={item} cardStyle={currentStyle} />;
+            return (
+              <JobCard
+                jobItem={item}
+                cardStyle={currentStyle}
+                navigation={navigation}
+              />
+            );
           }}
           keyExtractor={(item) => item.id}
           contentContainerStyle={[
@@ -186,33 +141,40 @@ const JobPostsScreen = ({ navigation }) => {
 };
 
 // Individual Job Card
-const JobCard = ({ item, cardStyle }) => {
+const JobCard = ({ jobItem, cardStyle, navigation }) => {
+  const postingTimestamp = new Date(jobItem.postingTimestamp);
+  const now = new Date();
+  const hoursAgo = Math.abs(now - postingTimestamp) / 36e5;
+
   return (
-    <View style={[styles.card, cardStyle]}>
+    <TouchableOpacity
+      style={[styles.card, cardStyle]}
+      onPress={() => navigation.navigate("JobDescription", { jobItem })}
+    >
       <View style={styles.rowSpaceBetween}>
-        <Text style={sharedStyles.TextHeading}>{item.title}</Text>
+        <Text style={sharedStyles.TextHeading}>{jobItem.title}</Text>
 
         <Image
           style={{ width: 30, height: 30 }}
           source={{
-            uri: item.logo,
+            uri: jobItem.company_logo,
           }}
         />
       </View>
 
-      <Text style={sharedStyles.TextSubheading}>{item.company}</Text>
+      <Text style={sharedStyles.TextSubheading}>{jobItem.company}</Text>
 
       <View style={styles.rowSpaceBetween}>
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
-          {"Experience " + item.experience}
+          {"Experience " + jobItem.experience}
         </Text>
 
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
-          {item.package}
+          {jobItem.package}
         </Text>
 
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
-          {item.jobType}
+          {jobItem.job_type}
         </Text>
       </View>
 
@@ -229,18 +191,18 @@ const JobCard = ({ item, cardStyle }) => {
         </Text>
 
         <Text style={[sharedStyles.TextRegular, { marginLeft: 5 }]}>
-          {item.totalApplicants + 5 + " applicants"}
+          {jobItem.total_applicants + 5 + " applicants"}
         </Text>
       </View>
 
       <View style={[{ marginTop: 20 }, styles.rowSpaceBetween]}>
-        <Text style={sharedStyles.TextRegular}>{item.location}</Text>
+        <Text style={sharedStyles.TextRegular}>{jobItem.location}</Text>
 
         <Text style={sharedStyles.TextRegular}>
-          {item.postingTimestamp + " Hours Ago"}
+          {hoursAgo.toFixed(2) + " Hours Ago"}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
