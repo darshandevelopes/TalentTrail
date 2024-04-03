@@ -21,7 +21,7 @@ export default function App() {
         screenOptions={{
           headerShown: false, // Hide header for all screens
         }}
-      >        
+      >
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -30,7 +30,7 @@ export default function App() {
         <Stack.Screen name="JobPosts" component={JobPostsScreen} />
         <Stack.Screen name="Portfolio" component={PortfolioScreen} />
         <Stack.Screen name="JobDescription" component={JobDescriptionScreen} />
-        <Stack.Screen name="Score" component={ScoreScreen}/>
+        <Stack.Screen name="Score" component={ScoreScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

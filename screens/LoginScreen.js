@@ -19,21 +19,22 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://apigroup.me/api/login/", {
+      const response = await fetch("https://darshan-rahate.me/api/login/", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: email,
+          email: email,
           password: password,
         }),
       });
       const json = await response.json();
+      console.log(json);
       if (json.token) {
         await AsyncStorage.setItem("userToken", json.token);
-        await AsyncStorage.setItem("userId", json.user.id.toString());
+        await AsyncStorage.setItem("email", json.user.email.toString());
         await AsyncStorage.setItem("username", json.user.username);
         navigation.navigate("Home");
       } else {

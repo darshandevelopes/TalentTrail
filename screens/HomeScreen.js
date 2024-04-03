@@ -38,7 +38,10 @@ const HomeScreen = ({ navigation }) => {
           <SliderBox
             images={images}
             dotColor="black"
-            inactiveDotColor="#D9D9D9" autoplay={true} autoplayInterval={3000} circleLoop ={true}
+            inactiveDotColor="#D9D9D9"
+            autoplay={true}
+            autoplayInterval={3000}
+            circleLoop={true}
             style={{}}
           />
         </View>
@@ -67,14 +70,20 @@ const HomeScreen = ({ navigation }) => {
             </Pressable>
           </View>
           <View style={styles.row}>
-            <Pressable style={styles.card}>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("Practice")}
+            >
               <Image
                 source={require("../assets/image3.png")}
                 style={{ height: 90, width: 100 }}
               />
               <Text style={styles.cardText}>Practice</Text>
             </Pressable>
-            <Pressable style={styles.card}>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("Exam")}
+            >
               <Image
                 source={require("../assets/image4.png")}
                 style={{ height: 90, width: 100 }}
@@ -99,7 +108,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 55,
     borderBottomRightRadius: 55,
   },
-  
+
   search: {
     ...sharedStyles.TextRegular,
     padding: 10,
@@ -123,7 +132,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     top: -90,
   },
-  
+
   Slidercard: {
     flex: 0,
     alignItems: "center",
