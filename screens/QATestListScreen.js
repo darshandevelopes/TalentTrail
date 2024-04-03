@@ -46,7 +46,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Hexaware"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -54,7 +54,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Cognizant"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -62,7 +62,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Tech Mahindra"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -70,7 +70,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Deloitte"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -78,7 +78,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Capgemini"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -86,7 +86,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Test 1"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"
@@ -94,7 +94,7 @@ const QATestListScreen= ({ navigation }) => {
               color="black"            
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("Home")}>
+          <TouchableOpacity style={styles.tabs} onPress={() => navigation.navigate("QATestScreen")}>
               <Text style={styles.tabText}>{"Test 2"}</Text>
               <MaterialCommunityIcons
               name="arrow-right"

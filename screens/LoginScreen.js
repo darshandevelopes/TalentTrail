@@ -17,33 +17,33 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("https://apigroup.me/api/login/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
-      const json = await response.json();
-      if (json.token) {
-        await AsyncStorage.setItem("userToken", json.token);
-        await AsyncStorage.setItem("userId", json.user.id.toString());
-        await AsyncStorage.setItem("username", json.user.username);
-        navigation.navigate("Home");
-      } else {
-        // Handle login failure
-        console.error("Login failed");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await fetch("https://apigroup.me/api/login/", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         username: email,
+  //         password: password,
+  //       }),
+  //     });
+  //     const json = await response.json();
+  //     if (json.token) {
+  //       await AsyncStorage.setItem("userToken", json.token);
+  //       await AsyncStorage.setItem("userId", json.user.id.toString());
+  //       await AsyncStorage.setItem("username", json.user.username);
+  //       navigation.navigate("Home");
+  //     } else {
+  //       // Handle login failure
+  //       console.error("Login failed");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <View style={styles.background}>
@@ -97,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
         {/* Login Buttons */}
         <View style={styles.buttonsContainer}>
           <Pressable
-            onPress={handleLogin}
+            onPress={() => navigation.navigate("HomeScreen")}
             style={[styles.singInButton, { backgroundColor: "#244A61" }]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>LOGIN</Text>

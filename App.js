@@ -15,10 +15,12 @@ import TestHome from "./screens/TestHome"
 import QATestListScreen from "./screens/QATestListScreen"
 import QATestScreen from "./screens/QATestScreen"
 import TestResult from "./screens/TestResult"
+import ArrayPractice from "./screens/ArrayPractice";
 
-
+//
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+
 
 const Stack = createStackNavigator();
 
@@ -42,6 +44,7 @@ export default function App() {
         <Stack.Screen name="PracticeScreen" component={PracticeScreen}/>
         <Stack.Screen name="DSAScreen" component={DSAScreen}/>
         <Stack.Screen name="AptiScreen" component={AptiScreen}/>
+        <Stack.Screen name="ArrayPractice" component={ArrayPractice}/>
         <Stack.Screen name="TestHome" component={TestHome}/>
         <Stack.Screen name="QATestListScreen" component={QATestListScreen}/>
         <Stack.Screen name="QATestScreen" component={QATestScreen}/>

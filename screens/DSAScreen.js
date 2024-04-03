@@ -38,8 +38,17 @@ const DSAScreen= ({ navigation }) => {
             <Text style={[sharedStyles.TextHeading,{marginTop:20} ]}>{"Your learning content"}</Text>
         </View>
         <ScrollView  style ={styles.course} >
+          <Pressable style={styles.tabs}>
+              <Text style={styles.tabText}>Array </Text>
+              <MaterialCommunityIcons
+              name="arrow-right"
+              size={25}
+              color="black"
+              onPress={() => navigation.navigate("ArrayPractice")}
+            />
+          </Pressable>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Data Structure and Algorithms </Text>
+              <Text style={styles.tabText}>Sorting Algorithm </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -48,7 +57,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Aptitude and Reasoning </Text>
+              <Text style={styles.tabText}>String</Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -57,7 +66,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Computer Fundamentals </Text>
+              <Text style={styles.tabText}>Bit Manuipulation </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -66,7 +75,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Interview Preparation </Text>
+              <Text style={styles.tabText}>Time Complexity </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -75,7 +84,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Computer Fundamentals </Text>
+              <Text style={styles.tabText}>Linked List </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -84,7 +93,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Interview Preparation </Text>
+              <Text style={styles.tabText}>Stack </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}
@@ -93,16 +102,7 @@ const DSAScreen= ({ navigation }) => {
             />
           </View>
           <View style={styles.tabs}>
-              <Text style={styles.tabText}>Computer Fundamentals </Text>
-              <MaterialCommunityIcons
-              name="arrow-right"
-              size={25}
-              color="black"
-              onPress={() => navigation.navigate("Home")}
-            />
-          </View>
-          <View style={styles.tabs}>
-              <Text style={styles.tabText}>Interview Preparation </Text>
+              <Text style={styles.tabText}>Queues </Text>
               <MaterialCommunityIcons
               name="arrow-right"
               size={25}

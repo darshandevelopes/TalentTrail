@@ -8,6 +8,7 @@ import {
   ScrollView,
   Pressable,
   Image,
+  Linking,
 } from "react-native";
 import { FooterBar } from "../components/FooterBar";
 import { SliderBox } from "react-native-image-slider-box";
@@ -35,12 +36,15 @@ const HomeScreen = ({ navigation }) => {
 
         {/* Slider Feature */}
         <View style={styles.slider}>
-          {/* <SliderBox
+          <SliderBox
             images={images}
             dotColor="black"
-            inactiveDotColor="#D9D9D9" autoplay={true} autoplayInterval={3000} circleLoop ={true}
+            inactiveDotColor="#D9D9D9"
+            autoplay={true}
+            autoplayInterval={3000}
+            circleLoop={true}
             style={{}}
-          /> */}
+          />
         </View>
       </View>
 
@@ -67,15 +71,20 @@ const HomeScreen = ({ navigation }) => {
             </Pressable>
           </View>
           <View style={styles.row}>
-            <Pressable style={styles.card}
-            onPress={() => navigation.navigate("PracticeScreen")}>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("PracticeScreen")}
+            >
               <Image
                 source={require("../assets/image3.png")}
                 style={{ height: 90, width: 100 }}
               />
               <Text style={styles.cardText}>Practice</Text>
             </Pressable>
-            <Pressable style={styles.card} onPress={() => navigation.navigate("TestHome")}>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("TestHome")}
+            >
               <Image
                 source={require("../assets/image4.png")}
                 style={{ height: 90, width: 100 }}
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 55,
     borderBottomRightRadius: 55,
   },
-  
+
   search: {
     ...sharedStyles.TextRegular,
     padding: 10,
@@ -124,7 +133,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     top: -90,
   },
-  
+
   Slidercard: {
     flex: 0,
     alignItems: "center",
