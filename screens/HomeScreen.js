@@ -8,6 +8,7 @@ import {
   ScrollView,
   Pressable,
   Image,
+  Linking,
 } from "react-native";
 import { FooterBar } from "../components/FooterBar";
 import { SliderBox } from "react-native-image-slider-box";
@@ -72,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.row}>
             <Pressable
               style={styles.card}
-              onPress={() => navigation.navigate("Practice")}
+              onPress={() => navigation.navigate("PracticeScreen")}
             >
               <Image
                 source={require("../assets/image3.png")}
@@ -82,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
             </Pressable>
             <Pressable
               style={styles.card}
-              onPress={() => navigation.navigate("Exam")}
+              onPress={() => navigation.navigate("TestHome")}
             >
               <Image
                 source={require("../assets/image4.png")}
