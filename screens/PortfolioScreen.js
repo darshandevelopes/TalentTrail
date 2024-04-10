@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, StatusBar } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { sharedStyles } from "../styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PortfolioScreen = ({ navigation }) => {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const getName = async () => {
+      const storedName = await AsyncStorage.getItem("username");
+      if (storedName) {
+        // Capitalize the first letter
+        const capitalized =
+          storedName.charAt(0).toUpperCase() + storedName.slice(1);
+        setName(capitalized);
+      }
+    };
+
+    getName();
+  }, []);
+
+  const logout = async () => {
+    await AsyncStorage.removeItem("userToken");
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.rectangleMain}>
       <View style={styles.rectangleTwo}>
@@ -28,33 +50,22 @@ const PortfolioScreen = ({ navigation }) => {
             { marginTop: "15%", marginLeft: "5%" },
           ]}
         >
-          Name
+          {name}
         </Text>
       </View>
 
       <View style={styles.line}></View>
 
-      <View style={{ flexDirection: "row" }}>
+      {/* <View style={{ flexDirection: "row" }}>
         <FontAwesomeIcon
           name="graduation-cap"
           size={20}
           style={{ marginLeft: "20%", marginTop: "6%" }}
         />
         <Text style={styles.textContent}>Qualification</Text>
-      </View>
+      </View> */}
 
-      <View style={styles.line}></View>
-
-      <View style={{ flexDirection: "row" }}>
-        <MaterialCommunityIcons
-          name="certificate"
-          size={25}
-          style={{ marginLeft: "20%", marginTop: "5%" }}
-        />
-        <Text style={styles.textContent}>Certification</Text>
-      </View>
-
-      <View style={styles.line}></View>
+      {/* <View style={styles.line}></View> */}
 
       <View style={{ flexDirection: "row" }}>
         <MaterialCommunityIcons
@@ -63,6 +74,18 @@ const PortfolioScreen = ({ navigation }) => {
           style={{ marginLeft: "20%", marginTop: "5%" }}
         />
         <Text style={styles.textContent}>My Application</Text>
+      </View>
+
+      <View style={styles.line}></View>
+      <View style={{ flexDirection: "row" }}>
+        <MaterialCommunityIcons
+          name="logout"
+          size={25}
+          style={{ marginLeft: "20%", marginTop: "5%" }}
+        />
+        <Text style={styles.textContent} onPress={() => logout()}>
+          Logout
+        </Text>
       </View>
 
       <View style={styles.line}></View>
@@ -90,6 +113,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#244A61",
     marginLeft: "15%",
+    marginTop: "1%",
   },
   textContent: {
     ...sharedStyles.TextSubheading,

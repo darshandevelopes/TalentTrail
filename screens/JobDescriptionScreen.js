@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { sharedStyles } from "../styles";
@@ -16,9 +17,10 @@ import * as DocumentPicker from "expo-document-picker";
 const JobDescriptionScreen = ({ navigation, route }) => {
   const { jobItem } = route.params;
   const [resumeUploaded, setResumeUploaded] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const uploadResume = async () => {
+    setIsLoading(true);
     if (resumeUploaded) {
       Alert.alert("Applied!", "Application sent.");
       navigation.navigate("JobPosts");
@@ -54,14 +56,17 @@ const JobDescriptionScreen = ({ navigation, route }) => {
         },
         body: formData,
       });
-
-      const responseText = await response.text();
-      console.log("Upload successful", responseText);
-      setResumeUploaded(true);
-      Alert.alert(
-        "Resume Uploaded",
-        "Your resume has been successfully uploaded."
-      );
+      if (response.status === 400) {
+        Alert.alert("Already Applied", "You have already applied to this job.");
+      } else {
+        const responseText = await response.text();
+        console.log("Upload successful", responseText);
+        setResumeUploaded(true);
+        Alert.alert(
+          "Resume Uploaded",
+          "Your resume has been successfully uploaded."
+        );
+      }
     } catch (error) {
       console.error("Upload failed", error);
       Alert.alert("Upload Failed", `Failed to upload resume: ${err.message}`);
@@ -105,7 +110,6 @@ const JobDescriptionScreen = ({ navigation, route }) => {
       >
         {"About the Job"}
       </Text>
-
       <ScrollView style={{ marginBottom: "10%" }}>
         <View style={{ marginLeft: "10%" }}>
           <Text style={styles.components}>Job Title: {jobItem.title}</Text>
@@ -126,29 +130,18 @@ const JobDescriptionScreen = ({ navigation, route }) => {
           <Pressable
             // disabled={true}
             onPress={uploadResume}
-            style={[styles.uploadButton, { backgroundColor: "#4CAF50" }]}
-          >
-            <Text style={[styles.buttonText, { color: "white" }]}>
-              {resumeUploaded ? `Apply` : "Upload Resume"}
-              {/* {resumeUploaded ? `Apply (${uploadProgress}%)` : "Upload Resume"} */}
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => navigation.navigate("Login")}
-            // disabled={!resumeUploaded}
+            disabled={isLoading} // Disable the button when isLoading is true
             style={[
               styles.uploadButton,
-              {
-                // backgroundColor: resumeUploaded ? "#244A61" : "grey",
-                // borderWidth: 5,
-                // borderBlockColor: "black",
-              },
+              { backgroundColor: isLoading ? "#ccc" : "#4CAF50" },
             ]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>
-              {/* {"APPLY"} */}
+              {resumeUploaded ? `Apply` : "Upload Resume"}
             </Text>
           </Pressable>
+          {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
+          <Pressable style={styles.uploadButton}></Pressable>
         </View>
       </ScrollView>
     </View>

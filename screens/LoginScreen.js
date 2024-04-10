@@ -98,7 +98,7 @@ const LoginScreen = ({ navigation }) => {
         {/* Login Buttons */}
         <View style={styles.buttonsContainer}>
           <Pressable
-            onPress={() => navigation.navigate("HomeScreen")}
+            onPress={() => handleLogin()}
             style={[styles.singInButton, { backgroundColor: "#244A61" }]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>LOGIN</Text>

@@ -15,10 +15,26 @@ import OcticonIcon from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { sharedStyles } from "../styles";
 import { FooterBar } from "../components/FooterBar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const JobPostsScreen = ({ navigation }) => {
   // State management for search bar
   const [text, setText] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const getName = async () => {
+      const storedName = await AsyncStorage.getItem("username");
+      if (storedName) {
+        // Capitalize the first letter
+        const capitalized =
+          storedName.charAt(0).toUpperCase() + storedName.slice(1);
+        setName(capitalized);
+      }
+    };
+    getName();
+  }, []);
+
   const handleTextChange = (inputText) => {
     setText(inputText);
   };
@@ -73,7 +89,7 @@ const JobPostsScreen = ({ navigation }) => {
             sharedStyles.TextSubheading,
           ]}
         >
-          {"User_Name"}
+          Hi {name}👋
         </Text>
       </View>
 
@@ -142,7 +158,7 @@ const JobPostsScreen = ({ navigation }) => {
 
 // Individual Job Card
 const JobCard = ({ jobItem, cardStyle, navigation }) => {
-  const postingTimestamp = new Date(jobItem.postingTimestamp);
+  const postingTimestamp = new Date(jobItem.posting_timestamp);
   const now = new Date();
   const hoursAgo = Math.abs(now - postingTimestamp) / 36e5;
 
@@ -157,7 +173,11 @@ const JobCard = ({ jobItem, cardStyle, navigation }) => {
         <Image
           style={{ width: 30, height: 30 }}
           source={{
-            uri: jobItem.company_logo,
+            uri:
+              "https://darshan-rahate.me" +
+              (jobItem.company_logo.startsWith("/")
+                ? jobItem.company_logo
+                : "/" + jobItem.company_logo),
           }}
         />
       </View>
@@ -166,11 +186,11 @@ const JobCard = ({ jobItem, cardStyle, navigation }) => {
 
       <View style={styles.rowSpaceBetween}>
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
-          {"Experience " + jobItem.experience}
+          {"Experience " + jobItem.experience + " yrs"}
         </Text>
 
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
-          {jobItem.package}
+          {jobItem.package + " LPA"}
         </Text>
 
         <Text style={[sharedStyles.TextRegular, styles.tag]}>
@@ -199,7 +219,7 @@ const JobCard = ({ jobItem, cardStyle, navigation }) => {
         <Text style={sharedStyles.TextRegular}>{jobItem.location}</Text>
 
         <Text style={sharedStyles.TextRegular}>
-          {hoursAgo.toFixed(2) + " Hours Ago"}
+          {hoursAgo.toFixed(1) + " Hours Ago"}
         </Text>
       </View>
     </TouchableOpacity>

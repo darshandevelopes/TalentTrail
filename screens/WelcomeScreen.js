@@ -27,18 +27,18 @@ const WelcomeScreen = ({ navigation }) => {
 
       <View style={styles.buttonsContainer}>
         {/* Sign In Buttons */}
-        <Pressable
+        {/* <Pressable
           style={[styles.singInButton, { backgroundColor: "#244A61" }]}
         >
           <Text style={[styles.buttonText, { color: "white" }]}>
             {"SIGN IN WITH GOOGLE"}
           </Text>
-        </Pressable>
+        </Pressable> */}
         <Pressable
           onPress={() => navigation.navigate("Login")}
-          style={[styles.singInButton, { backgroundColor: "#D9D9D9" }]}
+          style={[styles.singInButton, { backgroundColor: "#244A61" }]}
         >
-          <Text style={[styles.buttonText, { color: "#244A61" }]}>
+          <Text style={[styles.buttonText, { color: "white" }]}>
             {"SIGN IN WITH EMAIL"}
           </Text>
         </Pressable>
@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     alignSelf: "center",
     marginTop: "10%",
+    marginTop: "20%", //remove this when google sign in is added
+    marginBottom: "10%", //remove this when google sign in is added
   },
   buttonsContainer: {
     maxHeight: "25%",
