@@ -9,6 +9,7 @@ import {
   StatusBar,
   Pressable,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import { sharedStyles } from "../styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,8 +17,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("https://darshan-rahate.me/api/login/", {
         method: "POST",
@@ -99,10 +102,19 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.buttonsContainer}>
           <Pressable
             onPress={() => handleLogin()}
-            style={[styles.singInButton, { backgroundColor: "#244A61" }]}
+            disabled={isLoading}
+            style={[
+              styles.singInButton,
+              { backgroundColor: isLoading ? "#ccc" : "#244A61" },
+            ]}
+            // style={[
+            //   styles.uploadButton,
+            //   { : "#4CAF50" },
+            // ]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>LOGIN</Text>
           </Pressable>
+          {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
         </View>
         <StatusBar style="auto" />
       </View>

@@ -29,16 +29,42 @@ const PortfolioScreen = ({ navigation }) => {
 
   return (
     <View style={styles.rectangleMain}>
+      <View style={styles.header}>
+        <MaterialCommunityIcons
+          name="arrow-left"
+          size={25}
+          color="white"
+          onPress={() => navigation.navigate("Home")}
+        />
+
+        <Text
+          style={[
+            { color: "white", marginLeft: 10 },
+            sharedStyles.TextSubheading,
+          ]}
+        >
+          {"Profile"}
+        </Text>
+      </View>
+
       <View style={styles.rectangleTwo}>
         <FontAwesomeIcon
           name="user"
           size={90}
           color="black"
-          style={{ alignSelf: "center" }}
+          style={{ alignSelf: "center", margin: 10 }}
         />
+        <Text
+          style={[
+            sharedStyles.TextHeading,
+            { textAlign: "center", margin: 10 },
+          ]}
+        >
+          {name}
+        </Text>
       </View>
 
-      <View style={{ flexDirection: "row" }}>
+      {/* <View style={{ flexDirection: "row" }}>
         <FontAwesomeIcon
           name="user"
           size={20}
@@ -52,9 +78,9 @@ const PortfolioScreen = ({ navigation }) => {
         >
           {name}
         </Text>
-      </View>
+      </View> */}
 
-      <View style={styles.line}></View>
+      {/* <View style={styles.line}></View> */}
 
       {/* <View style={{ flexDirection: "row" }}>
         <FontAwesomeIcon
@@ -67,16 +93,16 @@ const PortfolioScreen = ({ navigation }) => {
 
       {/* <View style={styles.line}></View> */}
 
-      <View style={{ flexDirection: "row" }}>
+      {/* <View style={{ flexDirection: "row" }}>
         <MaterialCommunityIcons
           name="ballot"
           size={25}
           style={{ marginLeft: "20%", marginTop: "5%" }}
         />
         <Text style={styles.textContent}>My Application</Text>
-      </View>
+      </View> */}
 
-      <View style={styles.line}></View>
+      {/* <View style={styles.line}></View> */}
       <View style={{ flexDirection: "row" }}>
         <MaterialCommunityIcons
           name="logout"
@@ -95,7 +121,7 @@ const PortfolioScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   rectangleMain: {
-    width: 200 * 2,
+    width: "100%",
     height: 250,
     backgroundColor: "#244A61",
     paddingTop: StatusBar.currentHeight,
@@ -119,6 +145,15 @@ const styles = StyleSheet.create({
     ...sharedStyles.TextSubheading,
     marginTop: "4%",
     marginLeft: "2%",
+  },
+  header: {
+    height: "6.5%",
+    minHeight: 50,
+    width: "100%",
+    backgroundColor: "#244A61",
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 10,
   },
 });
 
