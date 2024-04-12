@@ -6,6 +6,7 @@ import {
   Text,
   Alert,
   Pressable,
+  ScrollView,
   ActivityIndicator,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -84,7 +85,7 @@ const ResumeAnalysis = ({ navigation }) => {
       </View>
 
       {/* Main Content In Middle Area */}
-      <View style={[styles.mainContentContainer]}>
+      <ScrollView style={[styles.mainContentContainer]}>
         <Text style={sharedStyles.TextSubheading}>Upload your resume</Text>
         <Pressable
           android_ripple={{
@@ -101,7 +102,7 @@ const ResumeAnalysis = ({ navigation }) => {
           <MaterialCommunityIcons name="cloud-upload-outline" size={25} />
           <Text style={[sharedStyles.TextSubheading]}>Upload Resume</Text>
         </Pressable>
-        <View>
+        <View style={{ paddingBottom: "10%" }}>
           {isLoading ? (
             // <Text style={sharedStyles.TextRegular}>Uploading...</Text>
             <ActivityIndicator
@@ -110,46 +111,85 @@ const ResumeAnalysis = ({ navigation }) => {
               style={{ marginTop: 100 }}
             />
           ) : (
-            <View style={styles.analysisContainer}>
+            <View>
               {Object.keys(data).length !== 0 ? (
-                <View>
+                <View style={styles.analysisContainer}>
                   <Text style={[sharedStyles.TextTitle, { color: "#244A61" }]}>
                     Analysis
                   </Text>
-                  <Text style={[sharedStyles.TextSubheading]}>
+                  <Text
+                    style={[sharedStyles.TextSubheading, { marginTop: 20 }]}
+                  >
                     ◾Job Profile Prediction:
                   </Text>
-                  <Text style={[sharedStyles.TextSubtitle, { marginLeft: 50 }]}>
-                    Placeholder Role
+                  <Text
+                    style={[
+                      sharedStyles.TextSubtitle,
+                      { marginLeft: 50, color: "#244A61" },
+                    ]}
+                  >
+                    {data.candidate_predicted_profile}
                   </Text>
-                  <Text style={[sharedStyles.TextSubheading]}>
+                  <Text
+                    style={[sharedStyles.TextSubheading, { marginTop: 20 }]}
+                  >
                     ◾Experience Level:
                   </Text>
-                  <Text style={[sharedStyles.TextSubtitle, { marginLeft: 50 }]}>
+                  <Text
+                    style={[
+                      sharedStyles.TextSubtitle,
+                      { marginLeft: 50, color: "#244A61" },
+                    ]}
+                  >
                     You are at {data.experienced_level} Level!
                   </Text>
-                  <Text style={[sharedStyles.TextSubheading]}>
+
+                  <Text
+                    style={[sharedStyles.TextSubheading, { marginTop: 20 }]}
+                  >
+                    ◾Recommended Skills:
+                  </Text>
+                  {data.recommended_skills.map((skill, index) => (
+                    <Text
+                      key={index}
+                      style={[
+                        sharedStyles.TextSubtitle,
+                        { marginLeft: 50, color: "#244A61" },
+                      ]}
+                    >
+                      {skill.charAt(0).toUpperCase() + skill.slice(1)}
+                    </Text>
+                  ))}
+
+                  <Text
+                    style={[sharedStyles.TextSubheading, { marginTop: 20 }]}
+                  >
                     ◾Resume Tips:
                   </Text>
                   {Object.keys(data.resume_sections_present).map(
                     (key, index) => (
                       <Text
                         key={index}
-                        style={[sharedStyles.TextSubtitle, { marginLeft: 50 }]}
+                        style={[
+                          sharedStyles.TextSubtitle,
+                          { marginLeft: 50, color: "#244A61" },
+                        ]}
                       >
-                        {key}: {data.resume_sections_present[key]}
+                        {/* {key}: {data.resume_sections_present[key]} */}
+                        {data.resume_sections_present[key]
+                          ? null
+                          : `Please add "${
+                              key.charAt(0).toUpperCase() + key.slice(1)
+                            }"`}
                       </Text>
                     )
                   )}
-                  <Text style={[sharedStyles.TextSubtitle, { marginLeft: 50 }]}>
-                    yoda
-                  </Text>
                 </View>
               ) : null}
             </View>
           )}
         </View>
-      </View>
+      </ScrollView>
 
       {/* Footer */}
       <FooterBar navigation={navigation} />
@@ -176,7 +216,7 @@ const styles = StyleSheet.create({
 
   mainContentContainer: {
     width: "100%",
-    height: "87%",
+    // height: "87%",
     paddingTop: 30,
     paddingHorizontal: 37,
   },
