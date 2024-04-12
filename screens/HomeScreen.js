@@ -52,7 +52,10 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView style={[{}]}>
         <View style={[styles.container]}>
           <View style={[styles.row]}>
-            <Pressable style={styles.card}>
+            <Pressable
+              style={styles.card}
+              onPress={() => navigation.navigate("ResumeAnalysis")}
+            >
               <Image
                 source={require("../assets/images1.jpeg")}
                 style={{ height: 90, width: 100 }}
