@@ -14,6 +14,7 @@ import { sharedStyles } from "../styles";
 import { FooterBar } from "../components/FooterBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as DocumentPicker from "expo-document-picker";
+import { REACT_APP_BASE_API_URL } from "@env";
 
 const ResumeAnalysis = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,8 @@ const ResumeAnalysis = ({ navigation }) => {
     }
 
     const doc = res.assets[0];
-    const url = "https://darshan-rahate.me/api/app-resume-analysis/";
+    const url = `${REACT_APP_BASE_API_URL}/api/app-resume-analysis/`;
+    console.log(url);
     // const token = "aad2f129c663dd292417060f16b981f669272667";
     const token = await AsyncStorage.getItem("userToken");
 

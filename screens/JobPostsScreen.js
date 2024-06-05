@@ -16,6 +16,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { sharedStyles } from "../styles";
 import { FooterBar } from "../components/FooterBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { REACT_APP_BASE_API_URL } from "@env";
 
 const JobPostsScreen = ({ navigation }) => {
   // State management for search bar
@@ -49,7 +50,7 @@ const JobPostsScreen = ({ navigation }) => {
       // Dummy data, will be replaced by API call.
 
       try {
-        const response = await fetch("http://darshan-rahate.me/api/jobs/", {
+        const response = await fetch(`${REACT_APP_BASE_API_URL}/api/jobs/`, {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -174,7 +175,7 @@ const JobCard = ({ jobItem, cardStyle, navigation }) => {
           style={{ width: 30, height: 30 }}
           source={{
             uri:
-              "https://darshan-rahate.me" +
+              `${REACT_APP_BASE_API_URL}` +
               (jobItem.company_logo.startsWith("/")
                 ? jobItem.company_logo
                 : "/" + jobItem.company_logo),

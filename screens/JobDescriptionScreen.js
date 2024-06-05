@@ -13,6 +13,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { sharedStyles } from "../styles";
 import * as DocumentPicker from "expo-document-picker";
+import { REACT_APP_BASE_API_URL } from "@env";
 
 const JobDescriptionScreen = ({ navigation, route }) => {
   const { jobItem } = route.params;
@@ -35,7 +36,7 @@ const JobDescriptionScreen = ({ navigation, route }) => {
     }
 
     const doc = res.assets[0];
-    const url = "https://darshan-rahate.me/api/upload-resume/";
+    const url = `${REACT_APP_BASE_API_URL}/api/upload-resume/`;
     // const token = "aad2f129c663dd292417060f16b981f669272667";
     const token = await AsyncStorage.getItem("userToken");
 
@@ -86,7 +87,7 @@ const JobDescriptionScreen = ({ navigation, route }) => {
           <Image
             source={{
               uri:
-                "https://darshan-rahate.me" +
+                `${REACT_APP_BASE_API_URL}` +
                 (jobItem.company_logo.startsWith("/")
                   ? jobItem.company_logo
                   : "/" + jobItem.company_logo),
@@ -137,7 +138,7 @@ const JobDescriptionScreen = ({ navigation, route }) => {
             ]}
           >
             <Text style={[styles.buttonText, { color: "white" }]}>
-              {resumeUploaded ? `Apply` : "Upload Resume"}
+              {resumeUploaded ? "Apply" : "Upload Resume"}
             </Text>
           </Pressable>
           {isLoading && <ActivityIndicator size="large" color="#0000ff" />}

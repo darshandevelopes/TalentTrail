@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { sharedStyles } from "../styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { REACT_APP_BASE_API_URL } from "@env";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -21,8 +22,9 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     setIsLoading(true);
+
     try {
-      const response = await fetch("https://darshan-rahate.me/api/login/", {
+      const response = await fetch(`${REACT_APP_BASE_API_URL}/api/login/`, {
         method: "POST",
         headers: {
           Accept: "application/json",
